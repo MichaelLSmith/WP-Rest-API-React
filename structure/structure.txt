@@ -1,0 +1,20 @@
+index.js:
+  imports store from 'store config'
+  deals with browserHistory
+  //react-hot-loader:
+  <AppContainer>
+    <Root store={store} />
+  </AppContainer>
+
+Root.js
+  store from props
+  <Provider store={store}>
+    <App />
+  </Provider>
+
+routes.js
+  //must dynamically build routes like the wp-api-react project did
+  
+
+
+app.js

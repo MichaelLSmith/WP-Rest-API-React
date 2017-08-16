@@ -12,6 +12,8 @@ import './styles/styles.scss'; // Yep, that's right. You can import SASS/CSS fil
 import { syncHistoryWithStore } from 'react-router-redux';
 
 const store = configureStore();
+window.store = store;//makes getstate() available as window.store.getState() in browser console
+console.log(store.getState());
 
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store);
