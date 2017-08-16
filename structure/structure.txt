@@ -6,15 +6,25 @@ index.js:
     <Root store={store} />
   </AppContainer>
 
-Root.js
-  store from props
-  <Provider store={store}>
-    <App />
-  </Provider>
+Root.js - written
+  import { Provider } from 'react-redux';
+  import routes from '../routes';
+  import { Router } from 'react-router';
+
+    store from props
+    <Provider store={store}>
+      <Router history={history} routes={routes} />
+    </Provider>
 
 routes.js
   //must dynamically build routes like the wp-api-react project did
-  
-
+  //initially it will simply display the App component which will just say Hello World and buttons that will call the actions to fetch pages, posts and header Options. These will console log their responses or state.
+  <Route path="/" component={App}>
+    <IndexRoute component={FrontPage}/>
+    <Route path="/page-a" component={PageA}/>
+  </Route>
 
 app.js
+  returns
+    a Nav bar
+    and {this.props.children}
