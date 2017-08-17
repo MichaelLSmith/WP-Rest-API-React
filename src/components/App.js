@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link, IndexLink } from 'react-router';
 
+import { fetchPages } from '../actions/actions';
 
+import 'bulma/css/bulma.css';
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
 // component at the top-level.
-class App extends React.Component {
+class App extends Component {
+  componentDidMount() {
+    this.props.fetchPages();
+  }
   render() {
-    // console.log('props: ',this.props);
+    console.log(window.store.getState());
     return (
       <div>
         <IndexLink to="/">Home</IndexLink>
@@ -25,4 +31,10 @@ App.propTypes = {
   children: PropTypes.element
 };
 
-export default App;
+function mapStateToProps(state) {
+  return state;
+}
+
+export default connect(mapStateToProps, { fetchPages })(App);
+
+// export default App;
