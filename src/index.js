@@ -19,10 +19,11 @@ console.log(store.getState());
 const history = syncHistoryWithStore(browserHistory, store);
 
 
-render(
+render (
   <AppContainer>
     <Root store={store} history={history} />
-  </AppContainer>,
+  </AppContainer>
+  ,
   document.getElementById('app')
 );
 

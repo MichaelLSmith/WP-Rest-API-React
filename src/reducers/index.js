@@ -3,7 +3,7 @@
  import ContentReducer from './reducer_content';
  import { routerReducer } from 'react-router-redux';
 
-rootReducer = combineReducers({
+const rootReducer = combineReducers({
   content: ContentReducer,
   routing: routerReducer
 });
