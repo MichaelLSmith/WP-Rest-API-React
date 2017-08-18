@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ROOT_URL = 'http://michaelsmith.x10host.com/wp/wp-json/'; // Wordpress installation url
+const ROOT_URL = 'http://michaelsmith.x10host.com/wp/wp-json'; // Wordpress installation url
 const PAGES = `${ROOT_URL}/wp/v2/pages`; // Endpoint for getting Wordpress Pages
 const POSTS = `${ROOT_URL}/wp/v2/posts`; // Endpoint for getting Wordpress Posts
 const HEADER_OPTIONS = `${ROOT_URL}/acf/v3/options/acf-options-header`;
@@ -30,6 +30,7 @@ export function fetchHeaderOptions() {
 }
 export function fetchMenus() {
   const request = axios.get(MENUS);
+  // console.log('request in fetchMenus:',request);
   return {
     type: 'FETCH_MENUS',
     payload: request

@@ -6,7 +6,7 @@ import { Link, IndexLink, Route } from 'react-router-dom';
 import Header from '../containers/Header';
 import PageA from '../components/PageA';
 
-import { fetchPages } from '../actions/actions';
+import { fetchPages, fetchMenus } from '../actions/actions';
 
 import 'bulma/css/bulma.css';
 
@@ -16,6 +16,7 @@ import 'bulma/css/bulma.css';
 class App extends Component {
   componentDidMount() {
     this.props.fetchPages();
+    this.props.fetchMenus();
   }
   buildRoutes(data) {
     console.log('data in buildRoutes:',data)
@@ -31,16 +32,21 @@ class App extends Component {
     })
   }
   render() {
-    // console.log(window.store.getState());
+    console.log(window.store.getState());
     const { data } = this.props.content;
-    // console.log(data);
-    return (
-      <div>
-        <Header />
-        {this.buildRoutes(data)}
-        {this.props.children}
-      </div>
-    );
+    console.log(data);
+    if(data) {
+      return (
+        <div>
+          <Header />
+          {this.buildRoutes(data)}
+          {this.props.children}
+        </div>
+      );
+    }
+    else {
+      return <div>No data loaded</div>
+    }
   }
 }
 App.propTypes = {
@@ -51,6 +57,6 @@ function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps, { fetchPages })(App);
+export default connect(mapStateToProps, { fetchPages, fetchMenus })(App);
 
 // export default App;
