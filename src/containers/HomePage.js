@@ -4,11 +4,8 @@ import { connect } from 'react-redux';
 import { fetchPages } from '../actions/actions';
 
 class HomePage extends Component {
-  // fetchPagesHandler() {
-  //   this.props.fetchPages();
-  // }
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     return (
     <div>
       <p>This is the hardcoded home page. It will be replaced by data from the WP API</p>

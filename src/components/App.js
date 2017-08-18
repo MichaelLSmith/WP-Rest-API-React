@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link, IndexLink } from 'react-router';
+import { Link, IndexLink, Route } from 'react-router-dom';
+
+import Header from '../containers/Header';
+import PageA from '../components/PageA';
 
 import { fetchPages } from '../actions/actions';
 
@@ -14,14 +17,27 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchPages();
   }
+  buildRoutes(data) {
+    console.log('data in buildRoutes:',data)
+    return data.map( (page, i) => {
+      return (
+        <Route
+          key={i}
+          component={PageA}
+          path={`/${page.slug}`}
+          exact
+        />
+      );
+    })
+  }
   render() {
-    console.log(window.store.getState());
+    // console.log(window.store.getState());
+    const { data } = this.props.content;
+    // console.log(data);
     return (
       <div>
-        <IndexLink to="/">Home</IndexLink>
-        {' | '}
-        <Link to="/page-a">Page A</Link>
-        <br/>
+        <Header />
+        {this.buildRoutes(data)}
         {this.props.children}
       </div>
     );
