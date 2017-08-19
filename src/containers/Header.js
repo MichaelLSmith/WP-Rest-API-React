@@ -1,37 +1,40 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { fetchMenus } from '../actions/actions';
 import _ from 'lodash';
 
 class Header extends Component {
+  componentDidMount() {
+    this.props.fetchMenus('176');
+  }
   render() {
-    console.log('header this.props:',this.props);
-    let allPages = this.props.content.data;
-    allPages = _.sortBy(allPages, [function(page) {return page.menu_order}]);
-    return (
-      <div className="Header">
-        {
-          allPages.map((page) => {
-            if(page.slug != 'home') {
-              return (
+    console.log('header this.props:', this.props);
+    const { items } = this.props;
+    if(items) {
+      return (
+        <div className="Header">
+          {
+            items
+              .map( (item) =>
                 <Link
-                  key={page.id}
-                  to={`/${page.slug}`}
+                  key={item.id}
+                  to={`/${item.object_slug}`}
                   style={{marginRight: '10px'}}
                 >
-                  {page.title.rendered}
+                  {item.title}
                 </Link>
               )
-            }
-        })
-      }
-      </div>
-    );
+          }
+        </div>
+      )
+    }
+    else { return <div>Header Loading...</div>  }
   }
 }
 
 function mapStateToProps(state) {
-  return state;
+  return state.menus;
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, { fetchMenus } )(Header);

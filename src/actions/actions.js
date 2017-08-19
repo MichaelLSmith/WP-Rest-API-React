@@ -28,8 +28,8 @@ export function fetchHeaderOptions() {
     payload: request
   };
 }
-export function fetchMenus() {
-  const request = axios.get(MENUS);
+export function fetchMenus(location) {
+  const request = axios.get(`${MENUS}${location}`);
   // console.log('request in fetchMenus:',request);
   return {
     type: 'FETCH_MENUS',
