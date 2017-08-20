@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 class PageA extends Component {
   render() {
-    console.log('pagea props',this.props);
+    // console.log('pagea props',this.props);
     return (
         <div>
           <p>This is hardcoded page a</p>

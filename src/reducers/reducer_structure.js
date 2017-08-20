@@ -5,6 +5,8 @@ export default function (state = {}, action) {
     case 'FETCH_MENUS':
       console.log('action in menu reducer:',action);
       state = Object.assign({}, state, action.payload.data);
+    case 'FETCH_HEADER_OPTIONS':
+      state = Object.assign({}, state, action.payload.data);
 
     default:
       return state;
