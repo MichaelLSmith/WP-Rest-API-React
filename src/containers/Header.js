@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchMenus, fetchHeaderOptions } from '../actions/actions';
-// import { NavBar } from '../components/NavBar/NavBar';
+import NavBarDropdown from '../components/NavBar/NavBar-Dropdown';
 import _ from 'lodash';
 
 class Header extends Component {
@@ -13,53 +13,49 @@ class Header extends Component {
   render() {
     console.log('header this.props:', this.props);
     const { items, acf } = this.props;
-    console.log('acf in header', acf);
     if(items && acf) {
       return (
         <div className="Header">
 
           <nav className="navbar">
             <NavBrand logo={acf.site_logo} />
+
             <div id="navMenu" className="navbar-menu">
               <div className="navbar-start">
-
-              </div>
-            {
-              items
-                .map( (item) => {
-                  console.log(item.children);
-                  if(item.children) {
-                    return (
-                      //<NavItem item={item} />
-                      //<NavBarDropdown item={item.chi} />
-                      <div className="navbar-item has-dropdown is-hoverable">
-                        <Link
-                            key={item.id}
-                            to={`/${item.object_slug}`}
-                            style={{marginRight: '10px'}}
-                            className="navbar-item"
-                          >
-                            {item.title}
-                        </Link>
-                        <div className="navbar-dropdown">
-
+                {items
+                  .map( (item) => {
+                    console.log('item.children:',item.children);
+                    if(item.children) {
+                      return (
+                        //<NavItem item={item} />
+                        //<NavBarDropdown item={item.chi} />
+                        <div className="navbar-item has-dropdown is-hoverable" key={item.id}>
+                          <Link
+                              // key={item.id}
+                              to={`/${item.object_slug}`}
+                              style={{marginRight: '10px'}}
+                              className="navbar-link"
+                            >
+                              {item.title}
+                          </Link>
+                          <NavBarDropdown children={item.children} />
                         </div>
-                      </div>
-                    )
-                  }
-                  else {
-                    return (
-                      <Link
-                        key={item.id}
-                        to={`/${item.object_slug}`}
-                        style={{marginRight: '10px'}}
-                      >
-                        {item.title}
-                      </Link>
-                    )}
+                      )
+                    }
+                    else {
+                      return (
+                        <Link
+                          key={item.id}
+                          to={`/${item.object_slug}`}
+                          style={{marginRight: '10px'}}
+                          className="navbar-item"
 
-                })
-            }
+                        >
+                          {item.title}
+                        </Link>
+                    )}
+                })}
+              </div>
             </div>
           </nav>
         </div>
@@ -70,7 +66,6 @@ class Header extends Component {
 }
 
 const NavBrand = (props) => {
-  console.log('Logo props: ', props);
   return (
     <div className="navbar-brand">
       <Link to="/">

@@ -32,9 +32,8 @@ class App extends Component {
     })
   }
   render() {
-    console.log('Full State from App.js: ', window.store.getState());
+    // console.log('Full State from App.js: ', window.store.getState());
     const { data } = this.props.content;
-    console.log('menus in APP.js', this.props.structure.items);
     if(data) {
       return (
         <div>

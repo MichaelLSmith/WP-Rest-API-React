@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
-// import routes from '../routes';
 import { BrowserRouter, Route, IndexRoute } from 'react-router-dom';
 
-import App from './App';
+import App from '../containers/App';
 import HomePage from '../containers/HomePage';
-import PageA from './PageA';
-import NotFoundPage from './NotFoundPage';
+import PageA from '../components/PageA';
+import NotFoundPage from '../components/NotFoundPage';
 
 export default class Root extends Component {
   render() {
@@ -15,11 +14,6 @@ export default class Root extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter>
-          {/* <Route path="/" component={App}>
-            <IndexRoute component={HomePage} />
-            <Route path="/page-a" component={PageA} />
-            <Route path="*" component={NotFoundPage}/>
-          </Route> */}
           <App />
         </BrowserRouter>
       </Provider>
