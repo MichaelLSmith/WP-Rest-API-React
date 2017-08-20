@@ -6,21 +6,36 @@ import NavBarDropdown from '../components/NavBar/NavBar-Dropdown';
 import _ from 'lodash';
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {isToggled: false}
+    this.handleMobileClick = this.handleMobileClick.bind(this);
+  }
+  handleMobileClick(el) {
+    setState({isToggled=true})
+  }
   componentDidMount() {
     this.props.fetchMenus('176');
     this.props.fetchHeaderOptions();
   }
   render() {
     console.log('header this.props:', this.props);
+    const toggleHamburgerClass =
+      "navbar-burger burger "
+      + (this.state.isToggled ? 'is-active' : null);
     const { items, acf } = this.props;
     if(items && acf) {
       return (
         <div className="Header">
 
           <nav className="navbar">
-            <NavBrand logo={acf.site_logo} />
+            <NavBrand
+              logo={acf.site_logo}
+              handleClick={this.handleMobileClick}
+              toggleHamburgerClass = {toggleHamburgerClass}
+            />
 
-            <div id="navMenu" className="navbar-menu">
+            <div id="navMenu-header" className="navbar-menu">
               <div className="navbar-start">
                 {items
                   .map( (item) => {
@@ -65,30 +80,39 @@ class Header extends Component {
   }
 }
 
-const NavBrand = (props) => {
-  return (
-    <div className="navbar-brand">
-      <Link to="/">
-        <img src='http://via.placeholder.com/75x75' alt="site logo"/>
-      </Link>
-      <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
-          <span className="icon" style={{color: "#333"}}>
-            <i className="fa fa-github"></i>
-          </span>
-        </a>
-        <a className="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
-          <span className="icon" style={{color: "#55acee"}}>
-            <i className="fa fa-twitter"></i>
-          </span>
-        </a>
+const NavBrand = props => {
+    console.log('props in NavBrand', props);
 
-        <div className="navbar-burger burger" data-target="navMenubd-example">
-          <span></span>
-          <span></span>
-          <span></span>
+    return (
+      <div className="navbar-brand">
+        <Link to="/">
+          <img src='http://via.placeholder.com/75x75' alt="site logo"/>
+        </Link>
+        <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
+            <span className="icon" style={{color: "#333"}}>
+              <i className="fa fa-github"></i>
+            </span>
+          </a>
+          <a
+            className={props.toggleHamburgerClass}
+            href="https://twitter.com/jgthms" target="_blank"
+          >
+            <span className="icon" style={{color: "#55acee"}}>
+              <i className="fa fa-twitter"></i>
+            </span>
+          </a>
+
+          <div
+            className="navbar-burger burger"
+            data-target="navMenu-header"
+            onClick={(el) => props.handleClick(el)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
-      </div>
-  );
+    );
 }
 
 function mapStateToProps(state) {
