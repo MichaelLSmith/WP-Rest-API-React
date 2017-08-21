@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchMenus, fetchHeaderOptions } from '../actions/actions';
 import NavBarDropdown from '../components/NavBar-Dropdown';
-import _ from 'lodash';
 
 class Header extends Component {
   constructor(props) {
@@ -27,9 +26,11 @@ class Header extends Component {
       + (this.state.isToggled ? 'is-active' : null);
 
     console.log('this.props in Header', this.props);
+
+
+    if(this.props.headerMenu.items && this.props.headerOptions.acf) {
     const { headerMenu: {items}, headerOptions: {acf} } = this.props;
-    console.log(items,acf);
-    if(items && acf) {
+
       return (
         <div className="Header">
           {/* <img src= alt=""/> */}
