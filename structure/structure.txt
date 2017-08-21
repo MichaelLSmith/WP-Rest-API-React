@@ -20,8 +20,9 @@ Root.js - written
 
 
 
-app.js
+App.js
+  //Fetches Pages from API and builds routes for Router
   returns
     <Header />
-    {this.buildRoutes(data)}//takes in all pages pulled from API and builds one route per page.
+    {this.buildRoutes(pages)}//takes in all pages pulled from API and builds one route per page.
     and {this.props.children}

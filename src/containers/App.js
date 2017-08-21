@@ -18,9 +18,9 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchPages();
   }
-  buildRoutes(data) {
-    // console.log('data in buildRoutes:',data)
-    return data.map( (page, i) => {
+  buildRoutes(pages) {
+    // console.log('pages in buildRoutes:',pages)
+    return pages.map( (page, i) => {
       return (
           <Route
             key={i}
@@ -32,14 +32,13 @@ class App extends Component {
     })
   }
   render() {
-    // console.log('Full State from App.js: ', window.store.getState());
-    const { data } = this.props.content;
-    if(data) {
+    const { pages } = this.props.content;
+    if(pages) {
       return (
         <div>
           <Header />
           <Switch>
-            {this.buildRoutes(data)}
+            {this.buildRoutes(pages)}
           </Switch>
           {this.props.children}
         </div>

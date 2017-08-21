@@ -25,8 +25,10 @@ class Header extends Component {
     const toggleMenuClass =
       "navbar-menu "
       + (this.state.isToggled ? 'is-active' : null);
-    const { items, acf } = this.props;
+
     console.log('this.props in Header', this.props);
+    const { headerMenu: {items}, headerOptions: {acf} } = this.props;
+    console.log(items,acf);
     if(items && acf) {
       return (
         <div className="Header">
@@ -84,7 +86,6 @@ class Header extends Component {
 }
 
 const NavBrand = props => {
-
   return (
     <div className="navbar-brand">
       <Link to="/" className="navbar-item">
