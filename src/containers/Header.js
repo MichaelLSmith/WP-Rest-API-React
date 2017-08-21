@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchMenus, fetchHeaderOptions } from '../actions/actions';
-import NavBarDropdown from '../components/NavBar/NavBar-Dropdown';
+import NavBarDropdown from '../components/NavBar-Dropdown';
 import _ from 'lodash';
 
 class Header extends Component {
@@ -12,21 +12,25 @@ class Header extends Component {
     this.handleMobileClick = this.handleMobileClick.bind(this);
   }
   handleMobileClick(el) {
-    setState({isToggled=true})
+    this.setState(prevState => ({isToggled: !prevState.isToggled}));
   }
   componentDidMount() {
     this.props.fetchMenus('176');
     this.props.fetchHeaderOptions();
   }
   render() {
-    console.log('header this.props:', this.props);
     const toggleHamburgerClass =
       "navbar-burger burger "
       + (this.state.isToggled ? 'is-active' : null);
+    const toggleMenuClass =
+      "navbar-menu "
+      + (this.state.isToggled ? 'is-active' : null);
     const { items, acf } = this.props;
+    console.log('this.props in Header', this.props);
     if(items && acf) {
       return (
         <div className="Header">
+          {/* <img src= alt=""/> */}
 
           <nav className="navbar">
             <NavBrand
@@ -35,11 +39,10 @@ class Header extends Component {
               toggleHamburgerClass = {toggleHamburgerClass}
             />
 
-            <div id="navMenu-header" className="navbar-menu">
+            <div id="navMenu-header" className={toggleMenuClass}>
               <div className="navbar-start">
                 {items
                   .map( (item) => {
-                    console.log('item.children:',item.children);
                     if(item.children) {
                       return (
                         //<NavItem item={item} />
@@ -81,38 +84,36 @@ class Header extends Component {
 }
 
 const NavBrand = props => {
-    console.log('props in NavBrand', props);
 
-    return (
-      <div className="navbar-brand">
-        <Link to="/">
-          <img src='http://via.placeholder.com/75x75' alt="site logo"/>
-        </Link>
-        <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
-            <span className="icon" style={{color: "#333"}}>
-              <i className="fa fa-github"></i>
-            </span>
-          </a>
-          <a
-            className={props.toggleHamburgerClass}
-            href="https://twitter.com/jgthms" target="_blank"
-          >
-            <span className="icon" style={{color: "#55acee"}}>
-              <i className="fa fa-twitter"></i>
-            </span>
-          </a>
-
-          <div
-            className="navbar-burger burger"
-            data-target="navMenu-header"
-            onClick={(el) => props.handleClick(el)}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
+  return (
+    <div className="navbar-brand">
+      <Link to="/" className="navbar-item">
+        <img src='http://via.placeholder.com/75x75' alt="site logo"/>
+      </Link>
+      <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
+          <span className="icon" style={{color: "#333"}}>
+            <i className="fa fa-github"></i>
+          </span>
+        </a>
+        <a
+          className="navbar-item is-hidden-desktop"
+          href="https://twitter.com/jgthms" target="_blank"
+        >
+          <span className="icon" style={{color: "#55acee"}}>
+            <i className="fa fa-twitter"></i>
+          </span>
+        </a>
+        <div
+          className={props.toggleHamburgerClass}
+          data-target="navMenu-header"
+          onClick={(el) => props.handleClick(el)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
-    );
+      </div>
+  );
 }
 
 function mapStateToProps(state) {

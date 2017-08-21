@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function NavBarDropdown(props) {
-  console.log('props.children in NavBarDropdown:',props.children);
   return (
     <div className="navbar-dropdown">
       {props.children.map( child => {
