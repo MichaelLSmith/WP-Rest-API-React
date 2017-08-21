@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchMenus, fetchHeaderOptions } from '../actions/actions';
-import NavBarDropdown from '../components/NavBar-Dropdown';
+import NavItemDropdown from '../components/navigation/NavItem-dropdown';
+import NavItem from '../components/navigation/NavItem';
 
 class Header extends Component {
   constructor(props) {
@@ -26,11 +27,8 @@ class Header extends Component {
       + (this.state.isToggled ? 'is-active' : null);
 
     console.log('this.props in Header', this.props);
-
-
-    if(this.props.headerMenu.items && this.props.headerOptions.acf) {
-    const { headerMenu: {items}, headerOptions: {acf} } = this.props;
-
+    if(this.props.headerMenu && this.props.headerOptions) {
+      const { headerMenu: {items}, headerOptions: {acf} } = this.props;
       return (
         <div className="Header">
           {/* <img src= alt=""/> */}
@@ -41,41 +39,16 @@ class Header extends Component {
               handleClick={this.handleMobileClick}
               toggleHamburgerClass = {toggleHamburgerClass}
             />
-
             <div id="navMenu-header" className={toggleMenuClass}>
               <div className="navbar-start">
                 {items
                   .map( (item) => {
                     if(item.children) {
-                      return (
-                        //<NavItem item={item} />
-                        //<NavBarDropdown item={item.chi} />
-                        <div className="navbar-item has-dropdown is-hoverable" key={item.id}>
-                          <Link
-                              // key={item.id}
-                              to={`/${item.object_slug}`}
-                              style={{marginRight: '10px'}}
-                              className="navbar-link"
-                            >
-                              {item.title}
-                          </Link>
-                          <NavBarDropdown children={item.children} />
-                        </div>
-                      )
+                      return <NavItemDropdown item={item} key={item.id}/>
                     }
-                    else {
-                      return (
-                        <Link
-                          key={item.id}
-                          to={`/${item.object_slug}`}
-                          style={{marginRight: '10px'}}
-                          className="navbar-item"
-
-                        >
-                          {item.title}
-                        </Link>
-                    )}
-                })}
+                    else { return <NavItem item={item} key={item.id} /> }
+                  })
+                }
               </div>
             </div>
           </nav>
