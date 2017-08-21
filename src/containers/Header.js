@@ -31,7 +31,8 @@ class Header extends Component {
       const { headerMenu: {items}, headerOptions: {acf} } = this.props;
       return (
         <div className="Header">
-          {/* <img src= alt=""/> */}
+
+          <img src={acf.banner_image.sizes.large} alt=""/>
 
           <nav className="navbar">
             <NavBrand
