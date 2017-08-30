@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link, IndexLink, Route, Switch } from 'react-router-dom';
+import { Link, IndexLink, Route, Switch, Redirect, BrowserRouter } from 'react-router-dom';
 
 import Header from '../containers/Header';
+
+import Home from '../components/Home';
 import PageA from '../components/PageA';
+import PageB from '../components/PageB';
+
 
 import { fetchPages } from '../actions/actions';
 
@@ -19,12 +23,16 @@ class App extends Component {
     this.props.fetchPages();
   }
   buildRoutes(pages) {
+    const templates = {
+      'page-a': PageA,
+      'page-b': PageB
+    }
     // console.log('pages in buildRoutes:',pages)
     return pages.map( (page, i) => {
       return (
           <Route
             key={i}
-            component={PageA}
+            component={templates[page.slug]}
             path={`/${page.slug}`}
             exact
           />
@@ -32,16 +40,18 @@ class App extends Component {
     })
   }
   render() {
+    console.log('this.props in App.js:',this.props)
     const { pages } = this.props.content;
     if(pages) {
       return (
+      <BrowserRouter>
         <div className="app-container">
           <Header />
-          <Switch>
-            {this.buildRoutes(pages)}
-          </Switch>
-          {this.props.children}
+              <Route path="/" component={Home} exact />
+              <Route path="/page-a" component={PageA} />
+              <Route path="/page-b" component={PageB} />
         </div>
+      </BrowserRouter>
       );
     }
     else {
