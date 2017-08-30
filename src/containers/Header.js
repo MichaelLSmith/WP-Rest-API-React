@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchMenus, fetchHeaderOptions } from '../actions/actions';
-import NavItemDropdown from '../components/navigation/NavItem-dropdown';
-import NavItem from '../components/navigation/NavItem';
+// import NavItemDropdown from '../components/navigation/NavItem-dropdown';
+// import NavItem from '../components/navigation/NavItem';
+
+import Banner from '../components/Banner-img';
+import NavMain from '../components/navigation/Nav-Main';
+
 
 class Header extends Component {
   constructor(props) {
@@ -32,64 +36,19 @@ class Header extends Component {
       return (
         <div className="Header">
 
-          <img src={acf.banner_image.sizes.large} alt=""/>
-
-          <nav className="navbar">
-            <NavBrand
-              logo={acf.site_logo}
-              handleClick={this.handleMobileClick}
-              toggleHamburgerClass = {toggleHamburgerClass}
-            />
-            <div id="navMenu-header" className={toggleMenuClass}>
-              <div className="navbar-start">
-                {items
-                  .map( (item) => {
-                    if(item.children) {
-                      return <NavItemDropdown item={item} key={item.id}/>
-                    }
-                    else { return <NavItem item={item} key={item.id} /> }
-                  })
-                }
-              </div>
-            </div>
-          </nav>
+          <Banner img={acf.banner_image.sizes.large} />
+          <NavMain
+            handleClick={this.handleMobileClick}
+            toggleHamburgerClass={toggleHamburgerClass}
+            toggleMenuClass={toggleMenuClass}
+            logo={acf.site_logo}
+            items={items}
+          />
         </div>
       )
     }
     else { return <div>Header Loading...</div>  }
   }
-}
-
-const NavBrand = props => {
-  return (
-    <div className="navbar-brand">
-      <Link to="/" className="navbar-item">
-        <img src='http://via.placeholder.com/75x75' alt="site logo"/>
-      </Link>
-      <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
-          <span className="icon" style={{color: "#333"}}>
-            <i className="fa fa-github"></i>
-          </span>
-        </a>
-        <a
-          className="navbar-item is-hidden-desktop"
-          href="https://twitter.com/jgthms" target="_blank"
-        >
-          <span className="icon" style={{color: "#55acee"}}>
-            <i className="fa fa-twitter"></i>
-          </span>
-        </a>
-        <div
-          className={props.toggleHamburgerClass}
-          data-target="navMenu-header"
-          onClick={(el) => props.handleClick(el)}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-  );
 }
 
 function mapStateToProps(state) {

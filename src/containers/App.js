@@ -35,7 +35,7 @@ class App extends Component {
     const { pages } = this.props.content;
     if(pages) {
       return (
-        <div>
+        <div className="app-container">
           <Header />
           <Switch>
             {this.buildRoutes(pages)}

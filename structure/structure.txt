@@ -23,6 +23,13 @@ Root.js - written
 App.js
   //Fetches Pages from API and builds routes for Router
   returns
-    <Header />
-    {this.buildRoutes(pages)}//takes in all pages pulled from API and builds one route per page.
-    and {this.props.children}
+    div.App-container
+      <Header />
+      <Switch>
+        {this.buildRoutes(pages)}//takes in all pages pulled from API and builds one route per page.
+      </Switch>
+      {this.props.children} //all the pages loaded by router
+Header.js
+  returns
+    <Banner />
+    <NavBar />
