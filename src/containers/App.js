@@ -40,16 +40,17 @@ class App extends Component {
     })
   }
   render() {
-    console.log('this.props in App.js:',this.props)
     const { pages } = this.props.content;
     if(pages) {
       return (
       <BrowserRouter>
         <div className="app-container">
           <Header />
-              <Route path="/" component={Home} exact />
-              <Route path="/page-a" component={PageA} />
-              <Route path="/page-b" component={PageB} />
+          <Switch>
+            <Route path="/" component={ Home } exact />
+            {this.buildRoutes(pages)}
+          </Switch>
+          {this.props.children}
         </div>
       </BrowserRouter>
       );
