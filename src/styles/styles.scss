@@ -1,3 +1,15 @@
+@import './bulma-overrides';
+
+
+.blue-test {
+  font-size: 1.3em;
+  color: $blue;
+}
+
 body {
-  font-size: 20px;
+  font-size: 10px;
+}
+.Header {
+  font-size: 2em;
+
 }

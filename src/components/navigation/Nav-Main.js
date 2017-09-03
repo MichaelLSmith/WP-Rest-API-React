@@ -20,25 +20,25 @@ class NavMain extends Component {
       "navbar-menu "
       + (this.state.isToggled ? 'is-active' : null);
     return (
-    <nav className="navbar">
-      <NavBrand
-        logo={this.props.logo}
-        handleClick={this.handleMobileClick}
-        toggleHamburgerClass = {toggleHamburgerClass}
-      />
-      <div id="navMenu-header" className={toggleMenuClass}>
-        <div className="navbar-start">
-          {this.props.items
-            .map( (item) => {
-              if(item.children) {
-                return <NavItemDropdown item={item} key={item.id}/>
-              }
-              else { return <NavItem item={item} key={item.id} /> }
-            })
-          }
+      <nav className="navbar">
+        <NavBrand
+          logo={this.props.logo}
+          handleClick={this.handleMobileClick}
+          toggleHamburgerClass = {toggleHamburgerClass}
+        />
+        <div id="navMenu-header" className={toggleMenuClass}>
+          <div className="navbar-start">
+            {this.props.items
+              .map( (item) => {
+                if(item.children) {
+                  return <NavItemDropdown item={item} key={item.id}/>
+                }
+                else { return <NavItem item={item} key={item.id} /> }
+              })
+            }
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
   )};
 }
 export default NavMain;

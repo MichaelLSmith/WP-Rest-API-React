@@ -12,7 +12,6 @@ import PageB from '../components/PageB';
 
 import { fetchPages } from '../actions/actions';
 
-import 'bulma/css/bulma.css';
 import 'font-awesome/css/font-awesome.min.css';
 
 // This is a class-based component because the current
@@ -44,7 +43,7 @@ class App extends Component {
     if(pages) {
       return (
       <BrowserRouter>
-        <div className="app-container">
+        <div className="app-container container">
           <Header />
           <Switch>
             <Route path="/" component={ Home } exact />

@@ -3,7 +3,10 @@ import H1Title from './styled/H1-Title';
 
 function Home(props) {
   return (
-    <H1Title>Hard Coded HOME</H1Title>
+    <div className="home section">
+      <p className="blue-test">Blue Test</p>
+      <H1Title>Hard Coded HOME</H1Title>
+    </div>
   )
 }
 
