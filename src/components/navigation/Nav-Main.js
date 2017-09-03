@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NavBrand from './Nav-Brand';
 import NavItemDropdown from './NavItem-dropdown';
 import NavItem from './Nav-Item';
+import SocialLink from './Social-Link';
 
 class NavMain extends Component {
   constructor(props) {
@@ -36,6 +37,26 @@ class NavMain extends Component {
                 else { return <NavItem item={item} key={item.id} /> }
               })
             }
+          </div>
+          <div className="navbar-end">
+            <SocialLink
+              view="is-hidden-desktop-only"
+              url="https://michaellsmith.github.io/"
+              color="#333"
+              icon="fa fa-github"
+            />
+            <SocialLink
+              view="is-hidden-desktop-only"
+              url="https://linkedin.com/in/michaellaurencesmith"
+              color="#55acee"
+              icon="fa fa-twitter"
+            />
+            <SocialLink
+              view="is-hidden-desktop-only"
+              url="https://twitter.com/mlsmith45"
+              color="#55acee"
+              icon="fa fa-twitter"
+            />
           </div>
         </div>
       </nav>

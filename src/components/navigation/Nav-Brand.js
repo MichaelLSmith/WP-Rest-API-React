@@ -1,28 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../styled/Logo';
-
+import SocialLink from './Social-Link';
 
 const NavBrand = props => {
   return (
     <div className="navbar-brand">
       <Link to="/" className="navbar-item">
-        {/* <img src='http://via.placeholder.com/75x75' alt="site logo"/> */}
         <Logo />
       </Link>
-      <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
-        <span className="icon" style={{color: "#333"}}>
-          <i className="fa fa-github"></i>
-        </span>
-      </a>
-      <a
-        className="navbar-item is-hidden-desktop"
-        href="https://twitter.com/jgthms" target="_blank"
-      >
-        <span className="icon" style={{color: "#55acee"}}>
-          <i className="fa fa-twitter"></i>
-        </span>
-      </a>
+      <SocialLink
+        view="is-hidden-desktop"
+        url="https://michaellsmith.github.io/"
+        color="#333"
+        icon="fa fa-github"
+      />
+      <SocialLink
+        view="is-hidden-desktop"
+        url="https://linkedin.com/in/michaellaurencesmith"
+        color="#55acee"
+        icon="fa fa-twitter"
+      />
+      <SocialLink
+        view="is-hidden-desktop"
+        url="https://twitter.com/mlsmith45"
+        color="#55acee"
+        icon="fa fa-twitter"
+      />
+
       <div
         className={props.toggleHamburgerClass}
         data-target="navMenu-header"
