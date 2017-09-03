@@ -48,8 +48,8 @@ class NavMain extends Component {
             <SocialLink
               view="is-hidden-desktop-only"
               url="https://linkedin.com/in/michaellaurencesmith"
-              color="#55acee"
-              icon="fa fa-twitter"
+              color="#0077b5"
+              icon="fa fa-linkedin"
             />
             <SocialLink
               view="is-hidden-desktop-only"
@@ -57,6 +57,9 @@ class NavMain extends Component {
               color="#55acee"
               icon="fa fa-twitter"
             />
+            <div className="navbar-item is-hidden-desktop-only">
+              <a className="button is-info">Call To Action</a>
+            </div>
           </div>
         </div>
       </nav>
