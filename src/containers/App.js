@@ -43,7 +43,7 @@ class App extends Component {
     if(pages) {
       return (
       <BrowserRouter>
-        <div className="app-container container">
+        <div className="app-container">
           <Header />
           <Switch>
             <Route path="/" component={ Home } exact />

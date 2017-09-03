@@ -21,48 +21,50 @@ class NavMain extends Component {
       "navbar-menu "
       + (this.state.isToggled ? 'is-active' : null);
     return (
-      <nav className="navbar">
-        <NavBrand
-          logo={this.props.logo}
-          handleClick={this.handleMobileClick}
-          toggleHamburgerClass = {toggleHamburgerClass}
-        />
-        <div id="navMenu-header" className={toggleMenuClass}>
-          <div className="navbar-start">
-            {this.props.items
-              .map( (item) => {
-                if(item.children) {
-                  return <NavItemDropdown item={item} key={item.id}/>
-                }
-                else { return <NavItem item={item} key={item.id} /> }
-              })
-            }
-          </div>
-          <div className="navbar-end">
-            <SocialLink
-              view="is-hidden-desktop-only"
-              url="https://michaellsmith.github.io/"
-              color="#333"
-              icon="fa fa-github"
-            />
-            <SocialLink
-              view="is-hidden-desktop-only"
-              url="https://linkedin.com/in/michaellaurencesmith"
-              color="#0077b5"
-              icon="fa fa-linkedin"
-            />
-            <SocialLink
-              view="is-hidden-desktop-only"
-              url="https://twitter.com/mlsmith45"
-              color="#55acee"
-              icon="fa fa-twitter"
-            />
-            <div className="navbar-item is-hidden-desktop-only">
-              <a className="button is-info">Call To Action</a>
+      <div className="container">
+        <nav className="navbar">
+          <NavBrand
+            logo={this.props.logo}
+            handleClick={this.handleMobileClick}
+            toggleHamburgerClass = {toggleHamburgerClass}
+          />
+          <div id="navMenu-header" className={toggleMenuClass}>
+            <div className="navbar-start">
+              {this.props.items
+                .map( (item) => {
+                  if(item.children) {
+                    return <NavItemDropdown item={item} key={item.id}/>
+                  }
+                  else { return <NavItem item={item} key={item.id} /> }
+                })
+              }
+            </div>
+            <div className="navbar-end">
+              <SocialLink
+                view="is-hidden-desktop-only"
+                url="https://michaellsmith.github.io/"
+                color="#333"
+                icon="fa fa-github"
+              />
+              <SocialLink
+                view="is-hidden-desktop-only"
+                url="https://linkedin.com/in/michaellaurencesmith"
+                color="#0077b5"
+                icon="fa fa-linkedin"
+              />
+              <SocialLink
+                view="is-hidden-desktop-only"
+                url="https://twitter.com/mlsmith45"
+                color="#55acee"
+                icon="fa fa-twitter"
+              />
+              <div className="navbar-item is-hidden-desktop-only">
+                <a className="button is-info">Call To Action</a>
+              </div>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
   )};
 }
 export default NavMain;

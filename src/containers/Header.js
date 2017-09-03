@@ -14,14 +14,21 @@ class Header extends Component {
   render() {
     if(this.props.headerMenu && this.props.headerOptions) {
       const { headerMenu: {items}, headerOptions: {acf} } = this.props;
-      console.log('banner: ',acf.banner_image);
       return (
         <div className="Header">
           <NavMain
             logo={acf.site_logo}
             items={items}
           />
+
+
+
           <Banner img={acf.banner_image.url} />
+
+
+
+
+
         </div>
       )
     }
