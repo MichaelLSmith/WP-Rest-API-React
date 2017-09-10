@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchMenus, fetchHeaderOptions } from '../actions/actions';
 
-import Banner from '../components/Banner-img';
+import BannerHero from '../components/banner/Banner-Hero';
 import NavMain from '../components/navigation/Nav-Main';
 
 class Header extends Component {
@@ -20,15 +20,7 @@ class Header extends Component {
             logo={acf.site_logo}
             items={items}
           />
-
-
-
-          <Banner img={acf.banner_image.url} />
-
-
-
-
-
+          <BannerHero img={acf.banner_image.url} />
         </div>
       )
     }

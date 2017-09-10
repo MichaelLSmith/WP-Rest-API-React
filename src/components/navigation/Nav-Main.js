@@ -21,7 +21,7 @@ class NavMain extends Component {
       "navbar-menu "
       + (this.state.isToggled ? 'is-active' : null);
     return (
-      <div className="container">
+      <div className="container-fluid">
         <nav className="navbar">
           <NavBrand
             logo={this.props.logo}
@@ -58,7 +58,7 @@ class NavMain extends Component {
                 color="#55acee"
                 icon="fa fa-twitter"
               />
-              <div className="navbar-item is-hidden-desktop-only">
+              <div className="navbar-item">
                 <a className="button is-info">Call To Action</a>
               </div>
             </div>
