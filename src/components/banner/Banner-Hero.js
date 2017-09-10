@@ -21,7 +21,7 @@ function BannerHero(props) {
       <div className="hero-body">
         <div className="container">
           <div className="columns">
-            <section className="column is-three-quarters">
+            <section className="column">
               <div>
                 <HeroHeading>Thou art the best of cutthroats,</HeroHeading>
               </div>
@@ -29,7 +29,7 @@ function BannerHero(props) {
                 <HeroSubHeading>a natural coward without instinct.</HeroSubHeading>
               </div>
             </section>
-            <section className="column">
+            <section className="column is-4">
               <Message content={cardContent} />
             </section>
           </div>

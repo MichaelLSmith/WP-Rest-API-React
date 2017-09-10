@@ -1,11 +1,12 @@
 import React from 'react';
 import H1Title from './styled/H1-Title';
+import NewsletterForm from './NewsletterForm';
 
 function Home(props) {
   return (
     <div className="home container">
-      <p className="blue-test">Blue Test</p>
       <H1Title>Hard Coded HOME</H1Title>
+      <NewsletterForm />
     </div>
   )
 }

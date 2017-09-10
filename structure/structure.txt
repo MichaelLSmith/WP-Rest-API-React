@@ -18,8 +18,6 @@ Root.js - written
       </RouterBrowser>
     </Provider>
 
-
-
 App.js
   //Fetches Pages from API and builds routes for Router
   returns
@@ -31,5 +29,19 @@ App.js
       {this.props.children} //all the pages loaded by router
 Header.js
   returns
-    <Banner />
-    <NavBar />
+    <BannerHero /> might move this to front page
+    <NavMain />
+
+NavMain.js
+  handles mobile hamburger menu
+  <NavBrand/>
+  <NavItemDropdown/>
+  <NavItem/>
+  <SocialLink />
+
+BannerHero.js
+  <Message />
+  <Card />
+
+Home.js
+  <NewsletterSignup />
